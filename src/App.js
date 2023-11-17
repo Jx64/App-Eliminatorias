@@ -5,14 +5,15 @@ import {Home} from "./components/home/Home";
 
 function App() {
     const [user, setUser] = useState([])
+    const [loggedIn, setLoggedIn] = useState(false);
     return (
         <div className="App">
             {
-                !user.length > 0
-                ?<AuthProvider>
-                        <Login setUser={setUser}/>
-                </AuthProvider>
-                    : <Home user={user} setUser={setUser}/>
+                user.length > 0 && loggedIn
+                    ? <Home user={user} setUser={setUser} setLoggedIn={setLoggedIn}/>
+                : <AuthProvider>
+                     <Login setUser={setUser} setLoggedIn={setLoggedIn}/>
+                  </AuthProvider>
             }
         </div>
     );

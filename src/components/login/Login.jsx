@@ -1,19 +1,19 @@
+import React, { useState } from 'react';
+import { AuthContext } from '../../context/AuthContext';
+import {handleLogin} from "../../services/Auth";
+
+// Assets
 import '../../assets/css/Login.css'
 import user from "../../assets/img/user.png";
 import pass from "../../assets/img/lock.png";
 
-
-import React, { useState } from 'react';
-import { AuthContext } from '../../context/AuthContext';
-import {handleLogin} from "../../test/authLogin";
-
-const Login = ( {setUser} ) => {
+const Login = ( { setUser, setLoggedIn } ) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [accessToken, setAccessToken] = useState(null);
 
     const onLoginClick = () => {
-        handleLogin(username, password, setAccessToken);
+        handleLogin(username, password, setAccessToken, setLoggedIn);
         setUser([username]);
     };
 
@@ -28,7 +28,7 @@ const Login = ( {setUser} ) => {
                             <img src={user} alt="Username"/>
                         </div>
                         <div className="input-box">
-                            <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} required/>
+                            <input type="password" placeholder="Password" autoComplete="off" onChange={(e) => setPassword(e.target.value)} required/>
                             <img src={pass} alt="Password"/>
                         </div>
 
