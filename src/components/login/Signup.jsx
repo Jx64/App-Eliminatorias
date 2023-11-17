@@ -21,7 +21,7 @@ const Signup = () =>{
                     <img src={pass} alt="Password"/>
                 </div>
 
-                <button type="summit" className="btn">Signup</button>
+                <button type="button" className="btn">Signup</button>
             </form>
         </div>
     )

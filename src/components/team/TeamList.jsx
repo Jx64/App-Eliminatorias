@@ -1,4 +1,5 @@
 import React, { useEffect, useState} from "react";
+import '../../assets/css/TeamList.css'
 
 const TeamList = ({ accessToken }) => {
     const [equipos, setEquipos] = useState([]);
@@ -27,15 +28,17 @@ const TeamList = ({ accessToken }) => {
 
     return (
         <div>
-            <ul>
-                {equipos.map((equipo) => (
-                    <li key={equipo.id}>
-                        {equipo.bandera}
-                        {equipo.nombre}
-                        {equipo.directorTecnico}
-                    </li>
-                ))}
-            </ul>
+            {equipos.map((equipo) => (
+                <div key={equipo.id}>
+                    <div className="team">
+                        <img className="flag" src={equipo.bandera} alt="bandera"></img>
+                        <div className="team-info">
+                            <p className="nombre">{equipo.nombre}</p>
+                            <p className="dt">Director tecnico: {equipo.directorTecnico}</p>
+                        </div>
+                    </div>
+                </div>
+            ))}
         </div>
     )
 };

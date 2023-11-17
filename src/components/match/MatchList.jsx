@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from "react";
-
+import '../../assets/css/MatchList.css'
 const MatchList = ({ accessToken }) => {
     const [partidos, setPartidos] = useState([]);
 
@@ -27,29 +27,28 @@ const MatchList = ({ accessToken }) => {
 
     return (
         <div>
-            <ul>
-                {partidos.map((partido) => (
-                    <li key={partido.id}>
-                        <div>
-                            {partido.fecha}
-                            {partido.estadio}
-                            {partido.arbitro}
-                        </div>
+            {partidos.map((partido) => (
+                <div className="par" key={partido.id}>
+                    <div className="local">
+                        <img className="flag" src={partido.equipoLocal.bandera} alt="bandera"></img>
+                        <p className="nombreLocal">{partido.equipoLocal.nombre}</p>
+                    </div>
 
-                        <div>
-                            {partido.equipoLocal.nombre}
-                            {partido.marcador.golesLocal}
-                        </div>
+                    <div className="marcadorL">{partido.marcador.golesLocal}</div>
 
-                        <div>
-                            {partido.equipoVisitante.nombre}
-                            {partido.marcador.golesVisitante}
-                        </div>
+                    <div className="info">
+                        <p className="fecha">{partido.fecha}</p>
+                        <p className="estadio">Estadio: {partido.estadio}</p>
+                    </div>
 
+                    <div className="marcadorV">{partido.marcador.golesVisitante}</div>
 
-                    </li>
-                ))}
-            </ul>
+                    <div className="visitante">
+                        <img className="flag" src={partido.equipoVisitante.bandera} alt="bandera"></img>
+                        <p className="nombreVisitante">{partido.equipoVisitante.nombre}</p>
+                    </div>
+                </div>
+            ))}
         </div>
     )
 };

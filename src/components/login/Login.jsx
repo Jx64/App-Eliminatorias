@@ -16,26 +16,23 @@ const Login = ( { setUser, setLoggedIn } ) => {
     };
 
     return(
-        <div>
-            <div className="wrapper">
-                <form action="src/components/main/page">
-                    <h1>Login</h1>
-                    <div className="input-box">
-                        <input type="text" placeholder="Username" onChange={(e) => setUsername(e.target.value)} required/>
-                        <img src={user} alt="Username"/>
-                    </div>
-                    <div className="input-box">
-                        <input type="password" placeholder="Password" autoComplete="off" onChange={(e) => setPassword(e.target.value)} required/>
-                        <img src={pass} alt="Password"/>
-                    </div>
+        <div id="auth" className="wrapper">
+            <form action="src/components/main/page">
+                <h1>Login</h1>
+                <div className="input-box">
+                    <input type="text" placeholder="Username" onChange={(e) => setUsername(e.target.value)} required/>
+                    <img src={user} alt="Username"/>
+                </div>
+                <div className="input-box">
+                    <input type="password" placeholder="Password" autoComplete="off" onChange={(e) => setPassword(e.target.value)} required/>
+                    <img src={pass} alt="Password"/>
+                </div>
 
-                    <button type="button" className="btn" onClick={onLoginClick}>Login</button>
-
-                    <div className="register-link">
-                        <p>Don't have an account? <a href="./Signup">Register</a></p>
-                    </div>
-                </form>
-            </div>
+                <button type="button" className="btn" onClick={onLoginClick}>Login</button>
+                <div className="register-link">
+                    <p>Don't have an account? <a href="./Signup">Register</a></p>
+                </div>
+            </form>
         </div>
     );
 };
