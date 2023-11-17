@@ -1,3 +1,4 @@
+import './App.css'
 import Login from "./components/login/Login";
 import {AuthProvider} from "./context/AuthContext";
 import {useState} from "react";
