@@ -8,13 +8,13 @@ function App() {
     const [loggedIn, setLoggedIn] = useState(false);
     return (
         <div className="App">
-            {
-                user.length > 0 && loggedIn
-                    ? <Home user={user} setUser={setUser} setLoggedIn={setLoggedIn}/>
-                : <AuthProvider>
-                     <Login setUser={setUser} setLoggedIn={setLoggedIn}/>
-                  </AuthProvider>
-            }
+            <AuthProvider>
+                { loggedIn ? (
+                    <Home user={user} setUser={setUser} setLoggedIn={setLoggedIn}/>
+                ) : (
+                    <Login setUser={setUser} setLoggedIn={setLoggedIn}/>
+            )}
+            </AuthProvider>
         </div>
     );
 }

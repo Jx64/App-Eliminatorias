@@ -1,9 +1,6 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { AuthContext } from '../context/AuthContext';
-import AddEquipo from './AddEquipo';
+import React, { useEffect, useState} from "react";
 
-const EquipoList = () => {
-    const { accessToken } = useContext(AuthContext);
+const TeamList = ({ accessToken }) => {
     const [equipos, setEquipos] = useState([]);
 
     useEffect(() => {
@@ -24,23 +21,23 @@ const EquipoList = () => {
             }
         };
 
-        // Llamar a la función para obtener la lista de equipos cuando el componente se monta
         fetchData();
     }, [accessToken]);
 
+
     return (
         <div>
-            <div>Lista de Equipos</div>
-            {/* Imprimir la lista de equipos después del encabezado */}
             <ul>
                 {equipos.map((equipo) => (
-                    <li key={equipo.id}>{equipo.nombre}</li>
+                    <li key={equipo.id}>
+                        {equipo.bandera}
+                        {equipo.nombre}
+                        {equipo.directorTecnico}
+                    </li>
                 ))}
             </ul>
-            {/* Agregar el componente para agregar equipos */}
-            <AddEquipo />
         </div>
     )
 };
 
-export default EquipoList;
+export default TeamList;

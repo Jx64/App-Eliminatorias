@@ -1,4 +1,4 @@
-const handleLogin = async (username, password, setAccessToken, setLoggedIn) => {
+const handleLogin = async (username, password, setLoggedIn) => {
     try {
         const response = await fetch('http://localhost:9000/api/auth/signin', {
             method: 'POST',
@@ -13,7 +13,7 @@ const handleLogin = async (username, password, setAccessToken, setLoggedIn) => {
 
         if(response.status === 200){
             const data = await response.json();
-            setAccessToken(data.accessToken);
+            localStorage.setItem('accessToken', data.accessToken);
             setLoggedIn(true);
         }
     } catch (error) {
