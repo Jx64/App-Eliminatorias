@@ -1,11 +1,10 @@
-body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-}
-
 .home {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 .welcome {
@@ -14,8 +13,30 @@ body {
     text-align: center;
     color: white;
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
+}
+
+.welcome .msg {
+    margin-right: 7px;
+}
+
+.welcome .btn {
+    margin-left: auto;
+    border-radius: 3px;
+    background: rgba(255, 48, 43, 0.8);
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 120px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcome button:hover {
+    background-color: #b30000;
 }
 
 .header-line {
@@ -25,18 +46,44 @@ body {
 }
 
 .selection {
+    height: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 20px;
+    padding: 10px;
     background-color: white;
     color: black;
 }
 
-.equipos,
-.partidos {
-    width: 48%; /* Reducido para dejar espacio entre los elementos */
+.equipos {
+    width: 38%;
     border: 1px solid black;
     padding: 20px;
+}
+
+.equipos .header {
+    display: flex;
+    margin-left: auto;
+    padding: 0 10px 0 10px;
+}
+
+.equipos .header .btn{
+    margin-left: auto;
+}
+
+.partidos {
+    width: 58%;
+    border: 1px solid black;
+    padding: 20px;
+}
+
+.partidos .header {
+    display: flex;
+    margin-left: auto;
+    padding: 0 10px 0 10px;
+}
+
+.partidos .header .btn{
+    margin-left: auto;
 }
 
 .equipos h3,

@@ -11,7 +11,7 @@ body {
     align-items: center;
     min-height: 100vh;
     background-size: cover;
-    background: url('../img/background.jpeg') center;
+    background: black;
 }
 
 .wrapper {
