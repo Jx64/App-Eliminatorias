@@ -1,0 +1,94 @@
+.contenido {
+    background: transparent;
+}
+
+.contenido .info {
+    padding: 10px 10px 10px 10px;
+    border: none;
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+}
+
+.contenido .info .nombre {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.contenido .info .nombre .name {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.contenido .info .nombre .insert {
+    border: .5px solid #a8a8a8;
+    border-radius: 5px;
+    padding: 5px;
+    background: transparent;
+    outline: none;
+    font-size: 16px;
+    color: black;
+}
+
+.contenido .info .flag {
+    height: 100%;
+    width: 100%;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.contenido .info .flag .name {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.contenido .info .flag .insert {
+    border: .5px solid #a8a8a8;
+    border-radius: 5px;
+    background: transparent;
+    padding: 5px;
+    outline: none;
+    font-size: 16px;
+    color: black;
+}
+
+.contenido .info .dt {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.contenido .info .dt .name {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.contenido .info .dt .insert {
+    border: .5px solid #a8a8a8;
+    border-radius: 5px;
+    padding: 5px;
+    background: transparent;
+    outline: none;
+    font-size: 16px;
+    color: black;
+}
+
+.contenido .btn {
+    width: 180px;
+    height: 45px;
+    text-align: center;
+    background: #1766DC;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 600;
+}

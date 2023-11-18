@@ -67,7 +67,19 @@
 }
 
 .equipos .header .btn{
+    display: block;
+    padding: 4px 5px;
+    border-radius: 100px;
+    color: #fff;
+    border: none;
+    background: #1766DC;
+    cursor: pointer;
+    transition: .3s ease all;
     margin-left: auto;
+}
+
+.equipos .header .btn:hover {
+    background: #0547ab;
 }
 
 .partidos {
