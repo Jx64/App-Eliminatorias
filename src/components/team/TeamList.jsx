@@ -1,27 +1,16 @@
 import React, { useEffect, useState} from "react";
 import '../../assets/css/TeamList.css'
+import {getTeams} from "../../services/AppServices";
 
 const TeamList = ({ accessToken }) => {
     const [equipos, setEquipos] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
-            try {
-                const response = await fetch('http://localhost:9000/api/v1/equipos', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${accessToken}`,
-                    },
-                });
-
-                const data = await response.json();
-                setEquipos(data);
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        };
-
+            const data = await getTeams(accessToken);
+            setEquipos(data);
+            console.log('Equipo agregado');
+        }
         fetchData();
     }, [accessToken]);
 
@@ -36,6 +25,7 @@ const TeamList = ({ accessToken }) => {
                             <p className="nombre">{equipo.nombre}</p>
                             <p className="dt">Director tecnico: {equipo.directorTecnico}</p>
                         </div>
+                        <button type="button" className="edit">Editar</button>
                     </div>
                 </div>
             ))}

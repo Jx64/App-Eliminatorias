@@ -1,26 +1,15 @@
 import React, { useEffect, useState} from "react";
 import '../../assets/css/MatchList.css'
+import {getMatches} from "../../services/AppServices";
 const MatchList = ({ accessToken }) => {
     const [partidos, setPartidos] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
-            try {
-                const response = await fetch('http://localhost:9000/api/v1/partidos', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${accessToken}`,
-                    },
-                });
-
-                const data = await response.json();
-                setPartidos(data);
-            } catch (error) {
-                console.error('Error:', error);
-            }
+            const data = await getMatches(accessToken);
+            setPartidos(data);
+            console.log('Equipo agregado');
         };
-
         fetchData();
     }, [accessToken]);
 
