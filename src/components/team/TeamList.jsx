@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from "react";
-import '../../assets/css/TeamList.css'
+import '../../assets/css/team/TeamList.css'
 import {getTeams} from "../../services/AppServices";
 
 const TeamList = ({ accessToken }) => {
@@ -9,7 +9,6 @@ const TeamList = ({ accessToken }) => {
         const fetchData = async () => {
             const data = await getTeams(accessToken);
             setEquipos(data);
-            console.log('Equipo agregado');
         }
         fetchData();
     }, [accessToken]);

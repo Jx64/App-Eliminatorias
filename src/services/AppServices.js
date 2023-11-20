@@ -65,15 +65,6 @@ const postResult = async (accessToken, result) => {
 }
 
 const postMatch = async (accessToken, match) => {
-    // const date = match?.fecha;
-    // if(date){
-    //     const fecha = new Date(date);
-    //     const dateFormater = fecha.toLocaleString("es-CO", {
-    //         pattern: "yyyy-MM-dd",
-    //     });
-    //     const dateForm = dateFormater.substring(0, dateFormater.indexOf(","));
-    //     match.fecha = dateForm;
-    // };
     const response = await fetch('http://localhost:9000/api/v1/partidos', {
         method: 'POST',
         body: JSON.stringify(match),

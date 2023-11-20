@@ -1,0 +1,215 @@
+.contenido {
+    background: transparent;
+}
+
+.contenido .info {
+    padding: 10px 10px 10px 10px;
+    border: none;
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+}
+
+.contenido .info .localTeam {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    padding-bottom: 2px;
+    display: flex;
+    flex-direction: row;
+}
+
+.contenido .info .localTeam .name {
+    font-size: 20px;
+    padding: 2px;
+    text-align: left;
+    margin-right: 10px;
+}
+
+.contenido .info .localTeam .equipoLocal {
+    padding: 2px;
+    font-size: 16px;
+    border: .5px solid #a8a8a8;
+    border-radius: 5px;
+    background: transparent;
+    outline: none;
+    color: black;
+}
+
+.contenido .info .localTeam .equipoLocal:hover {
+    border: 1px solid #007bff;
+}
+
+.contenido .info .localTeam .equipoLocal .options {
+    padding: 2px 3px 3px;
+}
+
+
+.contenido .info .visitingTeam {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    padding-bottom: 5px;
+    display: flex;
+    flex-direction: row;
+}
+
+.contenido .info .visitingTeam .name {
+    font-size: 20px;
+    padding: 2px;
+    text-align: left;
+    margin-right: 10px;
+}
+
+.contenido .info .visitingTeam .equipoVisitante {
+    padding: 2px;
+    font-size: 16px;
+    border: .5px solid #a8a8a8;
+    border-radius: 5px;
+    background: transparent;
+    outline: none;
+    color: black;
+}
+
+.contenido .info .visitingTeam .equipoVisitante:hover {
+    border: 1px solid #007bff;
+}
+
+.contenido .info .visitingTeam .equipoVisitante .options {
+    padding: 2px 3px 3px;
+}
+
+.contenido .info .fecha {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    padding-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.contenido .info .fecha .name {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.contenido .info .fecha .insert {
+    border: .5px solid #a8a8a8;
+    border-radius: 5px;
+    padding: 5px;
+    background: transparent;
+    outline: none;
+    font-size: 16px;
+    color: black;
+}
+
+.contenido .info .estadio {
+    height: 100%;
+    width: 100%;
+    padding-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.contenido .info .estadio .name {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.contenido .info .estadio .insert {
+    border: .5px solid #a8a8a8;
+    border-radius: 5px;
+    background: transparent;
+    padding: 5px;
+    outline: none;
+    font-size: 16px;
+    color: black;
+}
+
+.contenido .info .arbitro {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.contenido .info .arbitro .name {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.contenido .info .arbitro .insert {
+    border: .5px solid #a8a8a8;
+    border-radius: 5px;
+    padding: 5px;
+    background: transparent;
+    outline: none;
+    font-size: 16px;
+    color: black;
+}
+
+.contenido .info .localTeamGoals {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    padding-bottom: 1px;
+    display: flex;
+    flex-direction: row;
+}
+
+.contenido .info .localTeamGoals .name {
+    font-size: 20px;
+    padding: 2px;
+    text-align: left;
+    margin-right: 10px;
+}
+
+.contenido .info .localTeamGoals .golesLocal {
+    padding: 2px;
+    font-size: 16px;
+    border: .5px solid #a8a8a8;
+    border-radius: 5px;
+    background: transparent;
+    outline: none;
+    color: black;
+}
+
+.contenido .info .visitingTeamGoals {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    padding-bottom: 5px;
+    display: flex;
+    flex-direction: row;
+}
+
+.contenido .info .visitingTeamGoals .name {
+    font-size: 20px;
+    padding: 2px;
+    text-align: left;
+    margin-right: 10px;
+}
+
+.contenido .info .visitingTeamGoals .golesVisitante {
+    padding: 2px;
+    font-size: 16px;
+    border: .5px solid #a8a8a8;
+    border-radius: 5px;
+    background: transparent;
+    outline: none;
+    color: black;
+}
+
+.contenido .btn {
+    width: 180px;
+    height: 45px;
+    text-align: center;
+    background: #1766DC;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 600;
+}

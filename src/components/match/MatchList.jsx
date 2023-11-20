@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from "react";
-import '../../assets/css/MatchList.css'
+import '../../assets/css/match/MatchList.css'
 import {getMatches} from "../../services/AppServices";
 const MatchList = ({ accessToken }) => {
     const [partidos, setPartidos] = useState([]);
@@ -8,7 +8,6 @@ const MatchList = ({ accessToken }) => {
         const fetchData = async () => {
             const data = await getMatches(accessToken);
             setPartidos(data);
-            console.log('Equipo agregado');
         };
         fetchData();
     }, [accessToken]);

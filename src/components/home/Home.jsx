@@ -7,8 +7,10 @@ import Modal from "../modal/Modal";
 import AddMatch from "../match/AddMatch";
 export function Home ({ user, setUser, setLoggedIn }) {
     const accessToken = localStorage.getItem('accessToken');
-    const [modalStatus, setModalStatus] = useState(false);
-    const [teamListKey, setTeamListKey] = useState(0);
+    const [modalStatusEquipo, setModalStatusEquipo] = useState(false);
+    const [equipoListKey, setEquipoListKey] = useState(0);
+    const [modalStatusPartido, setModalStatusPartido] = useState(false);
+    const [partidoListKey, setPartidoListKey] = useState(0);
     const handleLogout = () => {
         setUser([])
         setLoggedIn(false)
@@ -26,34 +28,42 @@ export function Home ({ user, setUser, setLoggedIn }) {
                     <div className="equipos">
                         <div className="header">
                             <p className="name">Equipos</p>
-                            <button type="button" className="btn" onClick={() => setModalStatus(!modalStatus)}>Agregar Equipo</button>
+                            <button type="button" className="btn" onClick={() => setModalStatusEquipo(!modalStatusEquipo)}>Agregar Equipo</button>
                         </div>
-                        <Modal
-                            status={modalStatus}
-                            setStatus={setModalStatus}
-                            name="Ingrese los datos del nuevo equipo"
-                        >
-                            <AddTeam accessToken={accessToken}
-                                     onAddTeamSuccess={() => {
-                                         setModalStatus(false);
-                                         setTeamListKey(prevKey => prevKey + 1);
-                                     }}
-                            />
-                        </Modal>
                         <div>
-                            <TeamList key={teamListKey} accessToken={accessToken}/>
+                            <Modal
+                                status={modalStatusEquipo}
+                                setStatus={setModalStatusEquipo}
+                                name="Ingrese los datos del nuevo equipo"
+                            >
+                                <AddTeam accessToken={accessToken}
+                                         onAddTeamSuccess={() => {
+                                             setModalStatusEquipo(false);
+                                             setEquipoListKey(prevKey => prevKey + 1);
+                                         }}
+                                />
+                            </Modal>
+                            <TeamList key={equipoListKey} accessToken={accessToken}/>
                         </div>
                     </div>
                     <div className="partidos">
                         <div className="header">
                             <p className="name">Partidos</p>
-                            <button type="button" className="btn" >Agregar Partido</button>
+                            <button type="button" className="btn" onClick={() => setModalStatusPartido(!modalStatusPartido)}>Agregar Partido</button>
                         </div>
                         <div>
-                            <MatchList accessToken={accessToken}/>
-                        </div>
-                        <div className="test">
-                            <AddMatch accessToken={accessToken}/>
+                            <Modal status={modalStatusPartido}
+                                   setStatus={setModalStatusPartido}
+                                   name="Ingrese los datos del partido"
+                                   >
+                                <AddMatch accessToken={accessToken}
+                                          onAddMatchSuccess={() => {
+                                            setModalStatusPartido(false);
+                                            setPartidoListKey(prevKey => prevKey + 1);
+                                          }}
+                                />
+                            </Modal>
+                            <MatchList key={partidoListKey} accessToken={accessToken}/>
                         </div>
                     </div>
                 </div>

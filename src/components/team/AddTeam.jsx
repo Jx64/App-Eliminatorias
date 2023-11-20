@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import '../../assets/css/AddTeam.css'
+import '../../assets/css/team/AddTeam.css'
 import {postTeam} from "../../services/AppServices";
 
+const equipo = {
+    nombre: '',
+    bandera: '',
+    directorTecnico: ''
+}
+
 const AddTeam = ({ accessToken, onAddTeamSuccess }) => {
-    const [equipoData, setEquipoData] = useState({
-        nombre: '',
-        bandera: '',
-        directorTecnico: '',
-    });
+    const [equipoData, setEquipoData] = useState(equipo);
 
     const [equipoAgregado, setEquipoAgregado] = useState(null);
 
@@ -24,11 +26,7 @@ const AddTeam = ({ accessToken, onAddTeamSuccess }) => {
             const data = await postTeam(accessToken, equipoData);
             setEquipoAgregado(data);
 
-            setEquipoData({
-                nombre: '',
-                bandera: '',
-                directorTecnico: '',
-            });
+            setEquipoData(equipo);
 
             if (typeof onAddTeamSuccess === 'function') {
                 onAddTeamSuccess();

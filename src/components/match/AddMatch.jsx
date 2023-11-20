@@ -1,164 +1,195 @@
 import React, {useEffect, useState} from "react";
 import {getTeams, postMatch, postResult} from "../../services/AppServices";
+import "../../assets/css/match/AddMatch.css"
 
 const result = {
-    golesLocal: '',
-    golesVisitante: ''
+    golesLocal: 0,
+    golesVisitante: 0,
+    numeroTarjetasRojas: 0,
+    numeroTarjetasAmarillas: 0
+}
+
+const equipo = {
+    id: 0,
+    nombre: '',
+    bandera: '',
+    directorTecnico: ''
 }
 
 const match = {
     fecha: '',
     estadio: '',
     arbitro: '',
-    equipoLocal: 0,
-    equipoVisitante: 0,
+    equipoLocal: {
+        ...equipo
+    },
+    equipoVisitante: {
+        ...equipo
+    },
     marcador:{
         id: 0,
         ...result
     }
 }
 
-const AddMatch = ({ accessToken }) => {
-    const [matchData, setMatchData] = useState(match);
-    const [resultData, setResultData] = useState(result);
-    const [teams, setTeams] = useState([]);
-    const [local, setLocal] = useState(0);
-    const [visiting, setVisiting] = useState(0);
+const AddMatch = ({ accessToken, onAddMatchSuccess }) => {
+    const [partidoData, setPartidoData] = useState(match);
+    const [resultadoData, setResultadoData] = useState(result);
+    const [equiposData, setEquiposData] = useState([]);
+    const [localData, setLocalData] = useState(null);
+    const [visitanteData, setVisitanteData] = useState(null);
 
-    const handleInputMatch = (e) => {
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await getTeams(accessToken);
+            setEquiposData(data);
+        }
+        fetchData();
+    }, [accessToken]);
+
+    const handleInputPartido = (e) => {
         const { name, value } = e.target;
-        setMatchData({
-            ...matchData,
+        setPartidoData({
+            ...partidoData,
             [name]: value,
         });
     };
 
-    useEffect(() => {
-        const getTeam = async () => {
-            const teamList = await getTeams(accessToken);
-            console.log("Team List:", teamList);
-            setTeams(teamList);
-        }
-        getTeam();
-    }, [accessToken]);
-
-    const handleLocalTeam = (e) => {
-        const selectedTeamName = e.target.value;
-        setLocal(selectedTeamName);
-    }
-    const handleVisitingTeam = (e) => {
-        const selectedTeamName = e.target.value;
-        setVisiting(selectedTeamName);
-    }
-
-    const handleInputResult = (e) => {
+    const handleInputLocal = (e) => {
         const { name, value } = e.target;
-        setResultData({
-            ...resultData,
-            [name]: value
+        const selectedTeam = equiposData.find(
+            (equipo) => equipo.id === parseInt(value, 10));
+        setLocalData(selectedTeam);
+        setPartidoData((prevState) => ({
+            ...prevState,
+            equipoLocal: {
+                ...prevState.equipoLocal,
+                [name]: value,
+            },
+        }));
+    };
+
+    const handleInputVisitante = (e) => {
+        const { name, value } = e.target;
+        const selectedTeam = equiposData.find((equipo) => equipo.id === parseInt(value, 10));
+        setVisitanteData(selectedTeam);
+        setPartidoData((prevState) => ({
+            ...prevState,
+            equipoVisitante: {
+                ...prevState.equipoVisitante,
+                [name]: value,
+            },
+        }));
+    };
+
+    const handleInputResultado = (e) => {
+        const { name, value } = e.target;
+        setResultadoData({
+            ...resultadoData,
+            [name]: value,
         })
-        setMatchData((prevMatch) => ({
-            ...prevMatch,
+        setPartidoData((prevState) => ({
+            ...prevState,
             marcador: {
-                ...prevMatch.marcador,
-                [name]: value
+                ...prevState.marcador,
+                [name]: value,
             }
         }));
-    }
-    const handleAddMatch = async () => {
-        const score = await postResult(accessToken,resultData);
-        setResultData(result);
-        setMatchData(match);
+    };
 
-        const updateMatch = {
-            ...matchData,
-            equipoLocal: local,
-            equipoVisitante: visiting,
-            marcador: {
-                id: score.id,
-                ...resultData
+    const handleAddMatch = async () => {
+        try {
+            const score = await postResult(accessToken,resultadoData);
+            setPartidoData(match);
+            setResultadoData(result);
+
+            const updateMatch = {
+                ...partidoData,
+                equipoLocal: localData,
+                equipoVisitante: visitanteData,
+                marcador: {
+                    id: score.id,
+                    ...resultadoData
+                }
             }
+            setPartidoData(match);
+            await postMatch(accessToken, updateMatch);
+
+            if (typeof onAddMatchSuccess === 'function') {
+                onAddMatchSuccess();
+            }
+        } catch (error){
+            console.error('Error al agregar partido:', error);
         }
-        setMatchData(match);
-        // onmatch
-        await postMatch(accessToken, updateMatch);
     }
 
     return (
         <div className="contenido">
             <div className="info">
+                <div className="localTeam">
+                    <label className="name" htmlFor="">Equipo local:</label>
+                    <select className="equipoLocal" value={localData ? localData.id : ''} onChange={handleInputLocal}>
+                        <option className="options" value="">Seleccione un equipo</option>
+                        {equiposData.map((equipo) => (
+                            <option key={equipo.id} value={equipo.id}>
+                                {equipo.nombre}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                    <br />
+                <div className="visitingTeam">
+                    <label className="name" htmlFor="">Equipo visitante:</label>
+                    <select className="equipoVisitante" value={visitanteData ? visitanteData.id : ''} onChange={handleInputVisitante}>
+                        <option className="options" value="">Seleccione un equipo</option>
+                        {equiposData.map((team) => (
+                            <option key={team.id} value={team.id}>
+                                {team.nombre}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                    <br />
                 <div className="fecha">
                     <label className="name" htmlFor="">Fecha:</label>
                     <input type="text" placeholder="Ejemplo: 2023-04-14" className="insert" name="fecha"
-                           value={matchData.fecha}
-                           onChange={handleInputMatch} required
+                           value={partidoData.fecha}
+                           onChange={handleInputPartido} required
                     />
                 </div>
                     <br />
                 <div className="estadio">
                     <label className="name" htmlFor="">Estadio:</label>
                     <input type="text" placeholder="Ejemplo: Camp Nou" className="insert" name="estadio"
-                           value={matchData.estadio}
-                           onChange={handleInputMatch} required
+                           value={partidoData.estadio}
+                           onChange={handleInputPartido} required
                     />
                 </div>
                     <br />
                 <div className="arbitro">
                     <label className="name" htmlFor="">Arbitro:</label>
                     <input type="text" placeholder="Ejemplo: Juan Perez" className="insert" name="arbitro"
-                           value={matchData.arbitro}
-                           onChange={handleInputMatch} required
+                           value={partidoData.arbitro}
+                           onChange={handleInputPartido} required
                     />
                 </div>
                     <br />
-                <div className="teams">
-                    <div className="localTeam">
-
-                        <div className="localTeam-1">
-                            <label className="name" htmlFor="">Equipo local:</label>
-                            <select name="equipoLocal" value={local} onChange={handleLocalTeam}>
-                                <option value="">Seleccione un equipo</option>
-                                {teams.map((team) => {
-                                    return (
-                                        <option key={team.id} value={team.id}>{team.nombre}</option>
-                                    )
-                                })}
-                            </select>
-                        </div>
-
-                        <div className="localTeam-2">
-                            <label className="name" htmlFor="">Goles:</label>
-                            <input type="number" name="golesLocal"
-                                   value={resultData.golesLocal}
-                                   onChange={handleInputResult}
-                            />
-                        </div>
-                    </div>
-
-                    <div className="visitingTeam">
-
-                        <div className="visitingTeam-1">
-                            <label className="name" htmlFor="">Equipo visitante:</label>
-                            <select name="equipoVisitante" value={visiting} onChange={handleVisitingTeam}>
-                                <option value="">Seleccione un equipo</option>
-                                {teams.map((team) => {
-                                    return (
-                                        <option key={team.id} value={team.id}>{team.nombre}</option>
-                                    )
-                                })}
-                            </select>
-                        </div>
-
-                        <div className="visitingTeam-2">
-                            <label className="name" htmlFor="">Goles:</label>
-                            <input type="number" name="golesVisitante"
-                                   value={resultData.golesVisitante}
-                                   onChange={handleInputResult}
-                            />
-                        </div>
-                    </div>
+                <div className="localTeamGoals">
+                    <label className="name" htmlFor="">Goles {localData ? localData.nombre : ''}:</label>
+                    <input type="number" className="golesLocal"
+                           value={resultadoData.golesLocal}
+                           onChange={handleInputResultado}
+                    />
                 </div>
-                <br />
+                    <br />
+                <div className="visitingTeamGoals">
+                    <label className="name" htmlFor="">Goles {visitanteData ? visitanteData.nombre : ''}:</label>
+                    <input type="number" className="golesVisitante"
+                           value={resultadoData.golesVisitante}
+                           onChange={handleInputResultado}
+                    />
+                </div>
+                    <br />
                 <button type="button" className="btn" onClick={handleAddMatch}>
                     Agregar Partido
                 </button>
