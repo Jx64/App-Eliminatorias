@@ -1,0 +1,94 @@
+.contenido-TeamCard {
+    background: transparent;
+}
+
+.infoTeamCard {
+    padding: 10px 10px 10px 10px;
+    border: none;
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+}
+
+.nombreTeamCard {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.nombreTeamCard .nameTeamCard {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.nombreTeamCard .insertTeamCard {
+    border: 1px solid #a8a8a8;
+    border-radius: 5px;
+    padding: 5px;
+    background: transparent;
+    outline: none;
+    font-size: 16px;
+    color: black;
+}
+
+.flagTeamCard {
+    height: 100%;
+    width: 100%;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.flagTeamCard .nameTeamCard {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.flagTeamCard .insertTeamCard {
+    border: 1px solid #a8a8a8;
+    border-radius: 5px;
+    background: transparent;
+    padding: 5px;
+    outline: none;
+    font-size: 16px;
+    color: black;
+}
+
+.dtTeamCard {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.dtTeamCard .nameTeamCard {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.dtTeamCard .insertTeamCard {
+    border: 1px solid #a8a8a8;
+    border-radius: 5px;
+    padding: 5px;
+    background: transparent;
+    outline: none;
+    font-size: 16px;
+    color: black;
+}
+
+.btnTeamCard {
+    width: 180px;
+    height: 45px;
+    text-align: center;
+    background: #1766DC;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 600;
+}

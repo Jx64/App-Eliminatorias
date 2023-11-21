@@ -1,0 +1,91 @@
+.contenido {
+    background: transparent;
+}
+
+.contenido .info {
+    padding: 10px 10px 10px 10px;
+    border: none;
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+}
+
+.contenido .info .teams{
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+}
+
+.contenido .info .equipoLocal {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.contenido .info .equipoLocal .name {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.contenido .info .equipoLocal .insert {
+    border: 1px solid #a8a8a8;
+    border-radius: 5px;
+    padding: 5px;
+    background: transparent;
+    outline: none;
+    height: 50%;
+    width: 50%;
+    font-size: 16px;
+    text-align: center;
+    margin: auto;
+    color: black;
+}
+
+.contenido .info .equipoVisitante {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.contenido .info .equipoVisitante .name {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.contenido .info .equipoVisitante .insert {
+    border: 1px solid #a8a8a8;
+    border-radius: 5px;
+    padding: 5px;
+    background: transparent;
+    outline: none;
+    height: 50%;
+    width: 50%;
+    font-size: 16px;
+    text-align: center;
+    margin: auto;
+    color: black;
+}
+
+.contenido .btn {
+    width: 180px;
+    height: 45px;
+    text-align: center;
+    background: #1766DC;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 600;
+}

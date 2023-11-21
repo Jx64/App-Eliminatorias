@@ -43,32 +43,43 @@
     height: 2px;
     background-color: white;
     width: 100%;
+    border: 1px solid rgba(0, 0, 0, .1);
+}
+
+.content-line {
+    border: 1px solid rgba(0, 0, 0, .1);
 }
 
 .selection {
     height: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 10px;
     background-color: white;
     color: black;
 }
 
 .equipos {
     width: 38%;
-    border: 1px solid black;
+    margin: 0 auto;
     padding: 20px;
 }
 
 .equipos .header {
     display: flex;
-    margin-left: auto;
+    flex-direction: column;
     padding: 0 10px 0 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
 }
 
-.equipos .header .btn{
+.equipos .header .name {
+    font-weight: bold;
+    font-size: 20px;
+    margin: 0 auto 10px;
+}
+
+.equipos .btn{
     display: block;
-    padding: 4px 5px;
+    padding: 7px 9px;
     border-radius: 100px;
     color: #fff;
     border: none;
@@ -76,26 +87,47 @@
     cursor: pointer;
     transition: .3s ease all;
     margin-left: auto;
+    margin-top: 10px;
 }
 
-.equipos .header .btn:hover {
+.equipos .btn:hover {
     background: #0547ab;
 }
 
 .partidos {
     width: 58%;
-    border: 1px solid black;
     padding: 20px;
+    margin: 0 auto;
 }
 
 .partidos .header {
     display: flex;
-    margin-left: auto;
+    flex-direction: column;
     padding: 0 10px 0 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
 }
 
-.partidos .header .btn{
+.partidos .header .name {
+    font-weight: bold;
+    font-size: 20px;
+    margin: 0 auto 10px;
+}
+
+.partidos .btn{
+    display: block;
+    padding: 7px 9px;
+    border-radius: 100px;
+    color: #fff;
+    border: none;
+    background: #1766DC;
+    cursor: pointer;
+    transition: .3s ease all;
     margin-left: auto;
+    margin-top: 10px;
+}
+
+.partidos .btn:hover {
+    background: #0547ab;
 }
 
 .equipos h3,
