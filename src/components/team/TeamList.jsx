@@ -1,9 +1,14 @@
 import React, { useEffect, useState} from "react";
 import '../../assets/css/team/TeamList.css'
 import {getTeams} from "../../services/AppServices";
+import EditTeam from "./EditTeam";
+import Modal from "../modal/Modal";
 
 const TeamList = ({ accessToken }) => {
     const [equipos, setEquipos] = useState([]);
+    const [selectedEquipo, setSelectedEquipo] = useState(null);
+    const [modalStatusUpdate, setModalStatusUpdate] = useState(false);
+    const [equipoListKey, setEquipoListKey] = useState(0);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -11,11 +16,21 @@ const TeamList = ({ accessToken }) => {
             setEquipos(data);
         }
         fetchData();
-    }, [accessToken]);
+    }, [accessToken, equipoListKey]);
 
+    const handleEditClick = (team) => {
+        setSelectedEquipo(team);
+        setModalStatusUpdate(true);
+    };
+
+    const handleEditTeamSuccess = () => {
+        setModalStatusUpdate(false);
+        setEquipoListKey((prevKey) => prevKey + 1); // Trigger re-render
+    };
 
     return (
-        <div>
+        <div className="team-list-container">
+            <div className="team-list">
             {equipos.map((equipo) => (
                 <div key={equipo.id}>
                     <div className="team">
@@ -24,10 +39,26 @@ const TeamList = ({ accessToken }) => {
                             <p className="nombre">{equipo.nombre}</p>
                             <p className="dt">Director tecnico: {equipo.directorTecnico}</p>
                         </div>
-                        <button type="button" className="edit">Editar</button>
+                        <button type="button"
+                                className="edit"
+                                onClick={() => handleEditClick(equipo)}>
+                            Editar
+                        </button>
+                        <Modal
+                            status={modalStatusUpdate}
+                            setStatus={setModalStatusUpdate}
+                            name="Modificar datos del equipo"
+                        >
+                            <EditTeam
+                                accessToken={accessToken}
+                                equipo={selectedEquipo}
+                                onEditTeamSuccess={handleEditTeamSuccess}
+                            />
+                        </Modal>
                     </div>
                 </div>
             ))}
+            </div>
         </div>
     )
 };

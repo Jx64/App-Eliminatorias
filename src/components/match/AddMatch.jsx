@@ -82,18 +82,19 @@ const AddMatch = ({ accessToken, onAddMatchSuccess }) => {
         }));
     };
 
-    const handleInputResultado = (e) => {
-        const { name, value } = e.target;
-        setResultadoData({
-            ...resultadoData,
-            [name]: value,
-        })
-        setPartidoData((prevState) => ({
+    const handleInputGolesLocal = (e) => {
+        const { value } = e.target;
+        setResultadoData((prevState) => ({
             ...prevState,
-            marcador: {
-                ...prevState.marcador,
-                [name]: value,
-            }
+            golesLocal: value,
+        }));
+    };
+
+    const handleInputGolesVisitante = (e) => {
+        const { value } = e.target;
+        setResultadoData((prevState) => ({
+            ...prevState,
+            golesVisitante: value,
         }));
     };
 
@@ -128,7 +129,9 @@ const AddMatch = ({ accessToken, onAddMatchSuccess }) => {
             <div className="info">
                 <div className="localTeam">
                     <label className="name" htmlFor="">Equipo local:</label>
-                    <select className="equipoLocal" value={localData ? localData.id : ''} onChange={handleInputLocal}>
+                    <select className="equipoLocal"
+                            value={localData ? localData.id : ''}
+                            onChange={handleInputLocal}>
                         <option className="options" value="">Seleccione un equipo</option>
                         {equiposData.map((equipo) => (
                             <option key={equipo.id} value={equipo.id}>
@@ -140,7 +143,9 @@ const AddMatch = ({ accessToken, onAddMatchSuccess }) => {
                     <br />
                 <div className="visitingTeam">
                     <label className="name" htmlFor="">Equipo visitante:</label>
-                    <select className="equipoVisitante" value={visitanteData ? visitanteData.id : ''} onChange={handleInputVisitante}>
+                    <select className="equipoVisitante"
+                            value={visitanteData ? visitanteData.id : ''}
+                            onChange={handleInputVisitante}>
                         <option className="options" value="">Seleccione un equipo</option>
                         {equiposData.map((team) => (
                             <option key={team.id} value={team.id}>
@@ -152,7 +157,10 @@ const AddMatch = ({ accessToken, onAddMatchSuccess }) => {
                     <br />
                 <div className="fecha">
                     <label className="name" htmlFor="">Fecha:</label>
-                    <input type="text" placeholder="Ejemplo: 2023-04-14" className="insert" name="fecha"
+                    <input type="text"
+                           placeholder="Ejemplo: 2023-04-14"
+                           className="insert"
+                           name="fecha"
                            value={partidoData.fecha}
                            onChange={handleInputPartido} required
                     />
@@ -160,7 +168,10 @@ const AddMatch = ({ accessToken, onAddMatchSuccess }) => {
                     <br />
                 <div className="estadio">
                     <label className="name" htmlFor="">Estadio:</label>
-                    <input type="text" placeholder="Ejemplo: Camp Nou" className="insert" name="estadio"
+                    <input type="text"
+                           placeholder="Ejemplo: Camp Nou"
+                           className="insert"
+                           name="estadio"
                            value={partidoData.estadio}
                            onChange={handleInputPartido} required
                     />
@@ -168,7 +179,10 @@ const AddMatch = ({ accessToken, onAddMatchSuccess }) => {
                     <br />
                 <div className="arbitro">
                     <label className="name" htmlFor="">Arbitro:</label>
-                    <input type="text" placeholder="Ejemplo: Juan Perez" className="insert" name="arbitro"
+                    <input type="text"
+                           placeholder="Ejemplo: Juan Perez"
+                           className="insert"
+                           name="arbitro"
                            value={partidoData.arbitro}
                            onChange={handleInputPartido} required
                     />
@@ -176,21 +190,27 @@ const AddMatch = ({ accessToken, onAddMatchSuccess }) => {
                     <br />
                 <div className="localTeamGoals">
                     <label className="name" htmlFor="">Goles {localData ? localData.nombre : ''}:</label>
-                    <input type="number" className="golesLocal"
+                    <input type="number"
+                           className="golesLocal"
                            value={resultadoData.golesLocal}
-                           onChange={handleInputResultado}
+                           onChange={handleInputGolesLocal}
                     />
                 </div>
                     <br />
                 <div className="visitingTeamGoals">
-                    <label className="name" htmlFor="">Goles {visitanteData ? visitanteData.nombre : ''}:</label>
-                    <input type="number" className="golesVisitante"
+                    <label className="name" htmlFor="">
+                        Goles {visitanteData ? visitanteData.nombre : ''}:
+                    </label>
+                    <input type="number"
+                           className="golesVisitante"
                            value={resultadoData.golesVisitante}
-                           onChange={handleInputResultado}
+                           onChange={handleInputGolesVisitante}
                     />
                 </div>
                     <br />
-                <button type="button" className="btn" onClick={handleAddMatch}>
+                <button type="button"
+                        className="btn"
+                        onClick={handleAddMatch}>
                     Agregar Partido
                 </button>
             </div>

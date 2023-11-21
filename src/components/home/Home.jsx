@@ -28,7 +28,13 @@ export function Home ({ user, setUser, setLoggedIn }) {
                     <div className="equipos">
                         <div className="header">
                             <p className="name">Equipos</p>
-                            <button type="button" className="btn" onClick={() => setModalStatusEquipo(!modalStatusEquipo)}>Agregar Equipo</button>
+                        </div>
+                        <div className="botonAgregarEquipo">
+                            <button type="button"
+                                    className="btn"
+                                    onClick={() => setModalStatusEquipo(!modalStatusEquipo)}>
+                                Agregar Equipo
+                            </button>
                         </div>
                         <div>
                             <Modal
@@ -46,10 +52,17 @@ export function Home ({ user, setUser, setLoggedIn }) {
                             <TeamList key={equipoListKey} accessToken={accessToken}/>
                         </div>
                     </div>
+                    <div className="content-line"></div>
                     <div className="partidos">
                         <div className="header">
-                            <p className="name">Partidos</p>
-                            <button type="button" className="btn" onClick={() => setModalStatusPartido(!modalStatusPartido)}>Agregar Partido</button>
+                            <p className="name">Resultados</p>
+                        </div>
+                        <div>
+                            <button type="button"
+                                    className="btn"
+                                    onClick={() => setModalStatusPartido(!modalStatusPartido)}>
+                                Agregar Partido
+                            </button>
                         </div>
                         <div>
                             <Modal status={modalStatusPartido}
