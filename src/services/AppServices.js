@@ -1,5 +1,7 @@
+import {api} from "./Auth"
+
 const getTeams = async (accessToken) => {
-    const response = await fetch(`http://localhost:9000/api/v1/equipos`, {
+    const response = await fetch(`${api}/api/v1/equipos`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -15,7 +17,7 @@ const getTeams = async (accessToken) => {
 }
 
 const postTeam = async (accessToken, team) => {
-    const response = await fetch(`http://localhost:9000/api/v1/equipos`, {
+    const response = await fetch(`${api}/api/v1/equipos`, {
         method: 'POST',
         body: JSON.stringify(team),
         headers: {
@@ -32,7 +34,7 @@ const postTeam = async (accessToken, team) => {
 }
 
 const updateTeam = async (accessToken, team) => {
-    const response = await fetch(`http://localhost:9000/api/v1/equipos/${team.id}`, {
+    const response = await fetch(`${api}/api/v1/equipos/${team.id}`, {
         method: 'PUT',
         body: JSON.stringify(team),
         headers: {
@@ -48,7 +50,7 @@ const updateTeam = async (accessToken, team) => {
 }
 
 const getMatches = async (accessToken) => {
-    const response = await fetch(`http://localhost:9000/api/v1/partidos`, {
+    const response = await fetch(`${api}/api/v1/partidos`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -64,7 +66,7 @@ const getMatches = async (accessToken) => {
 }
 
 const postResult = async (accessToken, result) => {
-        const response = await fetch(`http://localhost:9000/api/v1/resultados`, {
+        const response = await fetch(`${api}/api/v1/resultados`, {
             method: 'POST',
             body: JSON.stringify(result),
             headers: {
@@ -81,7 +83,7 @@ const postResult = async (accessToken, result) => {
 }
 
 const postMatch = async (accessToken, match) => {
-    const response = await fetch(`http://localhost:9000/api/v1/partidos`, {
+    const response = await fetch(`${api}/api/v1/partidos`, {
         method: 'POST',
         body: JSON.stringify(match),
         headers: {
@@ -98,7 +100,7 @@ const postMatch = async (accessToken, match) => {
 }
 
 const updateResult = async (accessToken, partidos, marcador) => {
-    const response = await fetch(`http://localhost:9000/api/v1/resultados/${partidos.marcador.id}`, {
+    const response = await fetch(`${api}/api/v1/resultados/${partidos.marcador.id}`, {
         method: 'PUT',
         body: JSON.stringify(marcador),
         headers: {

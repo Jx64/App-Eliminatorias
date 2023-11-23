@@ -1,6 +1,7 @@
+const api = "https://eliminatoriasapi.azurewebsites.net"
 const handleLogin = async (username, password, setLoggedIn, setUserRole) => {
     try {
-        const response = await fetch('http://localhost:9000/api/auth/signin', {
+        const response = await fetch(`${api}/api/auth/signin`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -24,7 +25,7 @@ const handleLogin = async (username, password, setLoggedIn, setUserRole) => {
 
 const handleSignup = async (username, email, password, setOnRegister) => {
     try {
-        const response = await fetch('http://localhost:9000/api/auth/signup', {
+        const response = await fetch(`${api}/api/auth/signup`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -47,4 +48,4 @@ const handleSignup = async (username, email, password, setOnRegister) => {
 };
 
 
-export { handleLogin, handleSignup };
+export { handleLogin, handleSignup, api };
