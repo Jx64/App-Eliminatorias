@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/App-Eliminatorias/static/css/main.5cd759a8.css",
+    "main.js": "/App-Eliminatorias/static/js/main.c7fe6591.js",
+    "static/js/787.3e497cdd.chunk.js": "/App-Eliminatorias/static/js/787.3e497cdd.chunk.js",
+    "index.html": "/App-Eliminatorias/index.html",
+    "main.5cd759a8.css.map": "/App-Eliminatorias/static/css/main.5cd759a8.css.map",
+    "main.c7fe6591.js.map": "/App-Eliminatorias/static/js/main.c7fe6591.js.map",
+    "787.3e497cdd.chunk.js.map": "/App-Eliminatorias/static/js/787.3e497cdd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5cd759a8.css",
+    "static/js/main.c7fe6591.js"
+  ]
+}
