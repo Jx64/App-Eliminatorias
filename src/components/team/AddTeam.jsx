@@ -7,7 +7,6 @@ const equipo = {
     bandera: '',
     directorTecnico: ''
 }
-
 const AddTeam = ({ accessToken, onAddTeamSuccess }) => {
     const [equipoData, setEquipoData] = useState(equipo);
 

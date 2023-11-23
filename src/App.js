@@ -13,7 +13,7 @@ function App() {
                 { loggedIn ? (
                     <Home user={user} setUser={setUser} setLoggedIn={setLoggedIn}/>
                 ) : (
-                    <Login setUser={setUser} setLoggedIn={setLoggedIn}/>
+                    <Login setUser={setUser} setLoggedIn={setLoggedIn} />
             )}
             </AuthProvider>
         </div>

@@ -7,6 +7,7 @@ import Modal from "../modal/Modal";
 import AddMatch from "../match/AddMatch";
 export function Home ({ user, setUser, setLoggedIn }) {
     const accessToken = localStorage.getItem('accessToken');
+    const roles = localStorage.getItem('roles');
     const [modalStatusEquipo, setModalStatusEquipo] = useState(false);
     const [equipoListKey, setEquipoListKey] = useState(0);
     const [modalStatusPartido, setModalStatusPartido] = useState(false);
@@ -30,11 +31,13 @@ export function Home ({ user, setUser, setLoggedIn }) {
                             <p className="name">Equipos</p>
                         </div>
                         <div className="botonAgregarEquipo">
-                            <button type="button"
-                                    className="btn"
-                                    onClick={() => setModalStatusEquipo(!modalStatusEquipo)}>
-                                Agregar Equipo
-                            </button>
+                            { roles && roles.includes('ROLE_ADMIN') ? (
+                                <button type="button"
+                                        className="btn"
+                                        onClick={() => setModalStatusEquipo(!modalStatusEquipo)}>
+                                    Agregar Equipo
+                                </button>
+                            ):null}
                         </div>
                         <div>
                             <Modal
@@ -49,7 +52,7 @@ export function Home ({ user, setUser, setLoggedIn }) {
                                          }}
                                 />
                             </Modal>
-                            <TeamList key={equipoListKey} accessToken={accessToken}/>
+                            <TeamList key={equipoListKey} accessToken={accessToken} roles={roles}/>
                         </div>
                     </div>
                     <div className="content-line"></div>
@@ -58,11 +61,13 @@ export function Home ({ user, setUser, setLoggedIn }) {
                             <p className="name">Resultados</p>
                         </div>
                         <div>
-                            <button type="button"
-                                    className="btn"
-                                    onClick={() => setModalStatusPartido(!modalStatusPartido)}>
-                                Agregar Partido
-                            </button>
+                            { roles && roles.includes('ROLE_ADMIN') ? (
+                                <button type="button"
+                                        className="btn"
+                                        onClick={() => setModalStatusPartido(!modalStatusPartido)}>
+                                    Agregar Partido
+                                </button>
+                            ):null}
                         </div>
                         <div>
                             <Modal status={modalStatusPartido}
@@ -76,7 +81,7 @@ export function Home ({ user, setUser, setLoggedIn }) {
                                           }}
                                 />
                             </Modal>
-                            <MatchList key={partidoListKey} accessToken={accessToken}/>
+                            <MatchList key={partidoListKey} accessToken={accessToken} roles={roles}/>
                         </div>
                     </div>
                 </div>

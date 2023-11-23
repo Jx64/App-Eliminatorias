@@ -3,7 +3,7 @@ import '../../assets/css/match/MatchList.css'
 import {getMatches} from "../../services/AppServices";
 import Modal from "../modal/Modal";
 import EditMatchResult from "./EditMatchResult";
-const MatchList = ({ accessToken }) => {
+const MatchList = ({ accessToken, roles }) => {
     const [partidos, setPartidos] = useState([]);
     const [selectedPartido, setSelectedPartido] = useState(null);
     const [modalStatusUpdate, setModalStatusUpdate] = useState(false);
@@ -58,12 +58,13 @@ const MatchList = ({ accessToken }) => {
                         <img className="bandera" src={partido.equipoVisitante.bandera} alt="bandera"></img>
                         <p className="nombre">{partido.equipoVisitante.nombre}</p>
                     </div>
-
-                    <button type="button"
-                            className="editMatch"
-                            onClick={() => handleEditClick(partido)}>
-                        Editar
-                    </button>
+                    {roles && roles.includes('ROLE_ADMIN') ? (
+                        <button type="button"
+                                className="editMatch"
+                                onClick={() => handleEditClick(partido)}>
+                            Editar
+                        </button>
+                        ):null}
                     <Modal
                         status={modalStatusUpdate}
                         setStatus={setModalStatusUpdate}

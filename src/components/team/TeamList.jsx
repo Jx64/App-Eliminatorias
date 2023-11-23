@@ -4,7 +4,7 @@ import {getTeams} from "../../services/AppServices";
 import EditTeam from "./EditTeam";
 import Modal from "../modal/Modal";
 
-const TeamList = ({ accessToken }) => {
+const TeamList = ({ accessToken, roles }) => {
     const [equipos, setEquipos] = useState([]);
     const [selectedEquipo, setSelectedEquipo] = useState(null);
     const [modalStatusUpdate, setModalStatusUpdate] = useState(false);
@@ -39,11 +39,13 @@ const TeamList = ({ accessToken }) => {
                             <p className="nombre">{equipo.nombre}</p>
                             <p className="dt">Director tecnico: {equipo.directorTecnico}</p>
                         </div>
-                        <button type="button"
-                                className="edit"
-                                onClick={() => handleEditClick(equipo)}>
-                            Editar
-                        </button>
+                        {roles && roles.includes('ROLE_ADMIN') ? (
+                            <button type="button"
+                                    className="edit"
+                                    onClick={() => handleEditClick(equipo)}>
+                                Editar
+                            </button>
+                        ):null}
                         <Modal
                             status={modalStatusUpdate}
                             setStatus={setModalStatusUpdate}
